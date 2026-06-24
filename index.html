@@ -908,7 +908,7 @@ function showSection(id) {
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   const activeBtn = document.querySelector('.nav-btn[data-section="'+id+'"]');
   if (activeBtn) { activeBtn.classList.add('active'); activeBtn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'}); }
-  window.scrollTo({ top: 0, behavior: 'instant' });
+  const nav = document.getElementById('mainNav'); if(nav) window.scrollTo({ top: nav.offsetTop, behavior: 'instant' });
 }
 
 function show(id, btn) { showSection(id); }
