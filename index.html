@@ -908,7 +908,7 @@ function showSection(id) {
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   const activeBtn = document.querySelector('.nav-btn[data-section="'+id+'"]');
   if (activeBtn) { activeBtn.classList.add('active'); activeBtn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'}); }
-  window.scrollTo({ top: document.getElementById('mainNav').offsetTop - 1, behavior:'smooth' });
+  window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
 function show(id, btn) { showSection(id); }
@@ -930,7 +930,8 @@ document.addEventListener('touchend', e => {
   if (!cur) return;
   const idx = SECTIONS.indexOf(cur.id);
   if (idx === -1) return;
-  const next = dx < 0 ? Math.min(idx+1, SECTIONS.length-1) : Math.max(idx-1, 0);
+  // REVERSED: swipe right = next, swipe left = previous
+  const next = dx > 0 ? Math.min(idx+1, SECTIONS.length-1) : Math.max(idx-1, 0);
   if (next !== idx) showSection(SECTIONS[next]);
 }, {passive:true});
 </script>
